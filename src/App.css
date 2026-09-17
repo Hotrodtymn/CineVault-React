@@ -1,38 +1,167 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+}
+
+/* NAV */
+
+.nav {
+  width: 100%;
+  height: 72px;
+  background: #151515;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.nav__container {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.nav__logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav__links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav__link {
+  color: #aaaaaa;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+.nav__link:hover {
+  color: #ffffff;
+}
+
+/* MAIN */
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* HOME */
+
+.home__hero {
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+}
+
+.home__content {
+  max-width: 700px;
+}
+
+.home__eyebrow {
+  margin-bottom: 16px;
+  color: #8b5cf6;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.home__title {
+  margin-bottom: 20px;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.05;
+}
+
+.home__title span {
+  display: block;
+  color: #8b5cf6;
+}
+
+.home__description {
+  max-width: 600px;
+  margin-bottom: 32px;
+  color: #aaaaaa;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* SEARCH */
+
+.home__search {
+  display: flex;
+  max-width: 600px;
+}
+
+.home__search input {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 20px;
+
+  border: 1px solid #333333;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.home__search input::placeholder {
+  color: #777777;
+}
+
+.home__search input:focus {
+  border-color: #8b5cf6;
+}
+
+.home__search button {
+  padding: 0 28px;
+
+  border: none;
+  border-radius: 0 8px 8px 0;
+
+  background: #8b5cf6;
+  color: #ffffff;
+
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.home__search button:hover {
+  background: #9d75f7;
+}
+
+/* HOME SECTION */
+
+.home__section {
+  padding: 40px 0;
+}
+
+.home__section h2 {
+  margin-bottom: 24px;
+  font-size: 28px;
+}
+
+.home__placeholder {
+  padding: 60px 20px;
+
+  border: 1px dashed #333333;
+  border-radius: 12px;
+
+  text-align: center;
+  color: #777777;
+}
+
+/* SEARCH PAGE */
+
+.search-page h1 {
+  margin-bottom: 12px;
+}
+
+.search-page p {
+  color: #aaaaaa;
 }
