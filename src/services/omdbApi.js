@@ -1,5 +1,13 @@
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
+console.log("API key loaded:", !!API_KEY);
+console.log("API key length:", API_KEY?.length);
+console.log(
+  "API key starts with:",
+  API_KEY?.substring(0, 3)
+);
+console.log("OMDb API key loaded:", !!API_KEY);
+
 const BASE_URL = "https://www.omdbapi.com/";
 
 export const searchMovies = async (query) => {

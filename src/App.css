@@ -165,3 +165,62 @@
 .search-page p {
   color: #aaaaaa;
 }
+
+/* SEARCH */
+
+.search-page h1 {
+  margin-bottom: 32px;
+  font-size: 32px;
+}
+
+.search-page__message {
+  color: #aaaaaa;
+}
+
+.search-page__error {
+  color: #ff6b6b;
+}
+
+/* MOVIE GRID */
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.movie-card {
+  overflow: hidden;
+  border-radius: 10px;
+  background: #1a1a1a;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  background: #222222;
+}
+
+.movie-card__poster {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.movie-card__info {
+  padding: 16px;
+}
+
+.movie-card__info h2 {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.movie-card__info p {
+  color: #888888;
+  font-size: 14px;
+}
