@@ -4,9 +4,25 @@ export const getWatchlist = () => {
   const savedWatchlist =
     localStorage.getItem(WATCHLIST_KEY);
 
-  return savedWatchlist
-    ? JSON.parse(savedWatchlist)
-    : [];
+  if (!savedWatchlist) {
+    return [];
+  }
+
+  try {
+    const parsedWatchlist =
+      JSON.parse(savedWatchlist);
+
+    return Array.isArray(parsedWatchlist)
+      ? parsedWatchlist
+      : [];
+  } catch (error) {
+    console.error(
+      "Unable to read watchlist:",
+      error
+    );
+
+    return [];
+  }
 };
 
 export const saveWatchlist = (watchlist) => {

@@ -64,6 +64,10 @@ const Home = () => {
   };
 
 const renderMovies = (movies) => {
+  if (!Array.isArray(movies)) {
+    return null;
+  }
+
   return (
     <div className="movie-grid">
       {movies.map((movie) => (
