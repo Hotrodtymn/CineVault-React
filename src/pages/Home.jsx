@@ -14,6 +14,7 @@ const renderSkeletons = () => {
     </div>
   );
 };
+
 const Home = () => {
   const [search, setSearch] = useState("");
 
@@ -32,18 +33,21 @@ const Home = () => {
         setLoading(true);
         setError("");
 
-        const [popular, action, comedy] =
-          await Promise.all([
-            searchMovies("Avengers"),
-            searchMovies("Mission Impossible"),
-            searchMovies("Comedy"),
-          ]);
+        const popular = await searchMovies("Avengers");
+        const action = await searchMovies("Mission Impossible");
+        const comedy = await searchMovies("Comedy");
 
-        setPopularMovies(popular);
-        setActionMovies(action);
-        setComedyMovies(comedy);
+        console.log("POPULAR:", popular);
+        console.log("ACTION:", action);
+        console.log("COMEDY:", comedy);
+
+        setPopularMovies(Array.isArray(popular.movies) ? popular.movies : []);
+
+        setActionMovies(Array.isArray(action.movies) ? action.movies : []);
+
+        setComedyMovies(Array.isArray(comedy.movies) ? comedy.movies : []);
       } catch (error) {
-        console.error(error);
+        console.error("HOME ERROR:", error);
         setError(error.message);
       } finally {
         setLoading(false);
@@ -58,35 +62,28 @@ const Home = () => {
 
     if (!search.trim()) return;
 
-    navigate(
-      `/search?query=${encodeURIComponent(search.trim())}`
-    );
+    navigate(`/search?query=${encodeURIComponent(search.trim())}`);
   };
 
-const renderMovies = (movies) => {
-  if (!Array.isArray(movies)) {
-    return null;
-  }
+  const renderMovies = (movies) => {
+    if (!Array.isArray(movies) || movies.length === 0) {
+      return <p className="home__placeholder">No movies available.</p>;
+    }
 
-  return (
-    <div className="movie-grid">
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.imdbID}
-          movie={movie}
-        />
-      ))}
-    </div>
-  );
-};
+    return (
+      <div className="movie-grid">
+        {movies.map((movie) => (
+          <MovieCard key={movie.imdbID} movie={movie} />
+        ))}
+      </div>
+    );
+  };
 
   return (
     <section className="home">
       <div className="home__hero">
         <div className="home__content">
-          <p className="home__eyebrow">
-            WELCOME TO CINEVAULT
-          </p>
+          <p className="home__eyebrow">WELCOME TO CINEVAULT</p>
 
           <h1 className="home__title">
             Discover your next
@@ -94,33 +91,26 @@ const renderMovies = (movies) => {
           </h1>
 
           <p className="home__description">
-            Search thousands of movies, explore ratings, and
-            find something worth watching tonight.
+            Search thousands of movies, explore ratings, and find something
+            worth watching tonight.
           </p>
 
-          <form
-            className="home__search"
-            onSubmit={handleSubmit}
-          >
+          <form className="home__search" onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Search for a movie..."
               value={search}
-              onChange={(event) =>
-                setSearch(event.target.value)
-              }
+              onChange={(event) => setSearch(event.target.value)}
             />
 
-            <button type="submit">
-              Search
-            </button>
+            <button type="submit">Search</button>
           </form>
         </div>
       </div>
 
-{loading && renderSkeletons()}
+      {loading && renderSkeletons()}
 
-{error && <ErrorMessage message={error} />}
+      {error && <ErrorMessage message={error} />}
 
       {!loading && !error && (
         <>

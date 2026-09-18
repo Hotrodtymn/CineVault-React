@@ -7,11 +7,9 @@ const request = async (params) => {
 
   url.searchParams.set("apikey", API_KEY);
 
-  Object.entries(params).forEach(
-    ([key, value]) => {
-      url.searchParams.set(key, value);
-    }
-  );
+  Object.entries(params).forEach(([key, value]) => {
+    url.searchParams.set(key, value);
+  });
 
   const response = await fetch(url);
   const data = await response.json();
@@ -25,10 +23,7 @@ const request = async (params) => {
   return data;
 };
 
-export const searchMovies = async (
-  query,
-  page = 1
-) => {
+export const searchMovies = async (query, page = 1) => {
   const data = await request({
     s: query,
     type: "movie",
@@ -37,8 +32,7 @@ export const searchMovies = async (
 
   return {
     movies: data.Search || [],
-    totalResults:
-      Number(data.totalResults) || 0,
+    totalResults: Number(data.totalResults) || 0,
   };
 };
 
